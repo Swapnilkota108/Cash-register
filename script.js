@@ -16,7 +16,7 @@ if(billAmount.value<=cashGiven.value){
      calculateChange(amountToBeReturned);
      table.style.display = 'block';
 }
-else {
+else if(cashGiven.value<billAmount.value) {
     showMessage('Do you want to wash plates?');
     }
 } else {
