@@ -4,24 +4,36 @@ const cashGiven = document.querySelector('#cash-input')
 const message = document.querySelector('#error-message');
 const noOfNotes = document.querySelectorAll('.noOfNotes');
 const table = document.querySelector('.change');
+const cashLabel = document.querySelector('#cashLabel');
 
 const availableNotes = [2000, 500, 100, 20, 10, 5, 1];
 table.style.display = 'none';
+cashLabel.style.display = 'none';
+cashGiven.style.display = 'none';
+
 
 checkButton.addEventListener('click',function validateBillAmount(){
     hideMessage();
-if(billAmount.value>0){
-if(billAmount.value<=cashGiven.value){
-    const amountToBeReturned = cashGiven.value - billAmount.value;
-     calculateChange(amountToBeReturned);
-     table.style.display = 'block';
-}
-else if(cashGiven.value<billAmount.value) {
-    showMessage('Do you want to wash plates?');
+    cashLabel.style.display = 'block';
+cashGiven.style.display = 'block';
+
+    let cashInput = Number(cashGiven.value);
+    let billInput = Number(billAmount.value);
+    console.log(cashInput,billInput);
+    if(billInput>0){
+        if(cashInput>=billInput){
+            const amountToBeReturned = cashInput-billInput;
+            calculateChange(amountToBeReturned);
+            table.style.display = 'block';
+        }
+        else {
+            showMessage('Do you wanna wash plates?')
+        }
+    } else {
+        showMessage('The Bill Amount should be atleast greater than 0')
     }
-} else {
-  showMessage('Invalid Bill Amount');
-}
+    
+
 
 
 
