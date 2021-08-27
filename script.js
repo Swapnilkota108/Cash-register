@@ -27,7 +27,9 @@ cashGiven.style.display = 'block';
             table.style.display = 'block';
         }
         else {
-            showMessage('Do you wanna wash plates?')
+            showMessage('Do you wanna wash plates?');
+            table.style.display = 'none';
+
         }
     } else {
         showMessage('The Bill Amount should be atleast greater than 0')
