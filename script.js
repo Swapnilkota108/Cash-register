@@ -12,17 +12,17 @@ cashLabel.style.display = 'none';
 cashGiven.style.display = 'none';
 
 
-checkButton.addEventListener('click',function validateBillAmount(){
+const validateBillAmount = () => {
     hideMessage();
     cashLabel.style.display = 'block';
-cashGiven.style.display = 'block';
+    cashGiven.style.display = 'block';
 
     let cashInput = Number(cashGiven.value);
     let billInput = Number(billAmount.value);
-    console.log(cashInput,billInput);
-    if(billInput>0){
-        if(cashInput>=billInput){
-            const amountToBeReturned = cashInput-billInput;
+    console.log(cashInput, billInput);
+    if (billInput > 0) {
+        if (cashInput >= billInput) {
+            const amountToBeReturned = cashInput - billInput;
             calculateChange(amountToBeReturned);
             table.style.display = 'block';
         }
@@ -34,27 +34,24 @@ cashGiven.style.display = 'block';
     } else {
         showMessage('The Bill Amount should be atleast greater than 0')
     }
-    
 
 
+}
 
 
+checkButton.addEventListener('click', validateBillAmount);
 
-
-})
-
-function calculateChange(amountToBeReturned){
-    for(let i=0 ; i< availableNotes.length ; i++){
-        const numberOfNotes = Math.trunc(amountToBeReturned/availableNotes[i]);
+const calculateChange = amountToBeReturned => {
+    for (let i = 0; i < availableNotes.length; i++) {
+        const numberOfNotes = Math.trunc(amountToBeReturned / availableNotes[i]);
         amountToBeReturned %= availableNotes[i];
         noOfNotes[i].innerText = numberOfNotes;
-    }}
+    }
+}
 
-    function showMessage(msg){
-        message.style.display = 'block';
-        message.innerText = msg;
-        }
-        
-        function hideMessage(){
-        message.style.display = 'none';
-        }
+const showMessage = msg => {
+    message.style.display = 'block';
+    message.innerText = msg;
+}
+
+const hideMessage = () => message.style.display = 'none';
